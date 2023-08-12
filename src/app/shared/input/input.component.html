@@ -1,6 +1,6 @@
 <div class="field">
     <label> {{label}}</label>
-    <input [formControl]="control">
+    <input [type]="type" [placeholder]="placeholder" [formControl]="control">
     <div *ngIf="showErrors()" class="ui pointing red basic label">
       <p *ngIf="control.errors?.['required']">Value is required</p>
       <p *ngIf="control.errors?.['minlength']">Value entered is {{control.errors?.['minlength'].actualLength}} character(s) long, but it must be at least {{control.errors?.['minlength'].requiredLength}} characters long.</p>

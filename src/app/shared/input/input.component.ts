@@ -9,6 +9,8 @@ import { AbstractControl, FormControl } from '@angular/forms';
 })
 export class InputComponent {
   @Input() label!: string;
+  @Input() type!: string;
+  @Input() placeholder!: string;
   @Input() control!: FormControl;
 
   showErrors() {
