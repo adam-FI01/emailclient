@@ -11,4 +11,12 @@ export class InputComponent {
   @Input() label!: string;
   @Input() control!: FormControl;
 
+  showErrors() {
+    const {dirty, touched, errors} = this.control;
+    return dirty && touched && errors;
+  }
+
+
+  constructor() {}
+
 }
