@@ -30,6 +30,14 @@ export class SignupComponent {
   }, {validators: [this.matchPassword.validate]}
   );
 
+  onSubmit() {
+    if (this.authForm.invalid) {
+      return;
+    } else {
+      console.log(this.authForm.value)
+    }
+  }
+
   constructor(private matchPassword: MatchPassword, private uniqueUsername: UniqueUsername) {}
 
 }
