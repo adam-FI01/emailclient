@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../validators/match-password';
 import { UniqueUsername } from '../validators/unique-username';
+import { AuthService, SignupCridentials } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -34,10 +36,30 @@ export class SignupComponent {
     if (this.authForm.invalid) {
       return;
     } else {
-      console.log(this.authForm.value)
-    }
-  }
+      this.authService.signUp(this.authForm.value as SignupCridentials).subscribe({
 
-  constructor(private matchPassword: MatchPassword, private uniqueUsername: UniqueUsername) {}
+        next: (response) => {
+          
+        },
+
+        complete() {
+          /* this.signIn; */
+        },
+         
+        error: (err) => {
+          if (!err.status) {
+            this.authForm.setErrors({noConnection: true})
+          } else {
+            this.authForm.setErrors({unknownError: true})
+          }
+        }
+
+      })
+  }
+}
+
+  constructor(private matchPassword: MatchPassword, private uniqueUsername: UniqueUsername, private authService: AuthService, private router: Router) {
+    const signIn = this.router.navigate(['/sign-in'])
+  }
 
 }

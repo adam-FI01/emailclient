@@ -6,6 +6,8 @@
 
     <div *ngIf="authForm.get('password')?.touched && authForm.get('passwordConfirmation')?.touched && authForm.errors" class="ui red basic label">
         <p *ngIf="authForm.errors?.['passwordDontMatch']">The password you have entered does not match. Try again.</p>
+        <p *ngIf="authForm.errors?.['noConnection']">We cannot submit due to your internet bandwith being weak. Please try again.</p>
+        <p *ngIf="authForm.errors?.['unknownError']">Unknown Error. Please try again.</p>
     </div>
     <div>
         <button [disabled]="!authForm.valid" class="ui submit button primary">Submit.</button>
